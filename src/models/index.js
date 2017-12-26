@@ -1,7 +1,11 @@
 /**
  * Created by reditaru on 2017/12/26.
  */
-import VueX from 'vuex'
+import Vue from 'vue'
+import Vuex from 'vuex'
 import article from './article'
-const store = new VueX([])
+import auth from './auth'
+import user from './user'
+Vue.use(Vuex)
+const store = new Vuex.Store({modules:{article,auth,user}})
 export default store

@@ -14,8 +14,13 @@ export default {
     },
     output:{
         path:OUTPUT_DIR,
-        filename:__DEV__? 'static/js/[name].js':'static/js/[name].[hash:8].js',
-        publicPath:'/dist/'
+        filename:__DEV__? 'js/[name].js':'js/[name].[hash:8].js',
+        publicPath:'/'
+    },
+    resolve: {
+        alias: {
+            vue: 'vue/dist/vue.js'
+        }
     },
     module:{
         loaders:[
@@ -29,28 +34,32 @@ export default {
                 loader:'babel-loader'
             },
             {
-                test:/\.(css|less)$/,
+                test:/\.(less)$/,
                 loader:'style-loader!css-loader!less-loader'
             },
             {
+                test:/\.(css)$/,
+                loader:'style-loader!css-loader'
+            },
+            {
                 test: /\.(jpe|gif|png|ttf|eot|svg|jpg)$/,
-                use: 'file-loader?name=static/image/[name].[ext]?[hash]'
+                use: 'file-loader?name=image/[name].[ext]?[hash]'
             },
             {
                 test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-                loader: 'url-loader?limit=10000&mimetype=application/fontwoff&name=static/font/[name].[ext]?[hash]'
+                loader: 'url-loader?limit=10000&mimetype=application/fontwoff&name=font/[name].[ext]?[hash]'
             },
         ]
     },
     plugins:[
         new HtmlWebpackPlugin({
-            filename:'static/index.html',
+            filename:'index.html',
             template:'./index.html'
         })
     ],
     devtool:__DEV__? "cheap-module-eval-source-map":false,
     devServer: {
-        contentBase: './dist/static',
+        contentBase: '/dist',
         historyApiFallback: true,
         inline: true,
         hot:true

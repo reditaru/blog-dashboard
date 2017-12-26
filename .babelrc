@@ -1,4 +1,10 @@
 {
-  "preset":["env","stage-0"],
-  "plugin":["transform-runtime","syntax-dynamic-import"]
+  "presets":["env","stage-0"],
+  "plugins":["transform-runtime","syntax-dynamic-import",
+    ["component", [
+      {
+        "libraryName": "element-ui",
+        "styleLibraryName": "theme-chalk"
+      }]]
+  ]
 }
