@@ -35,7 +35,7 @@
         }
     }
 </script>
-<style lang="less">
+<style lang="less"  rel="stylesheet/less">
     .login{
         text-align: center;
         margin:120px auto;
