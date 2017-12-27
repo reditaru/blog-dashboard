@@ -4,7 +4,6 @@
 const config = {
     env:'development',
     host:'http://localhost:3000',
-    prefix:'/api',
     routerMode:'history'
 }
 export default config

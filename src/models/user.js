@@ -18,7 +18,9 @@ const user = {
     },
     mutations:{
         [UPDATE_USER](state,payload){
-            state = {...state,status:payload.status,user:payload.user};
+            sessionStorage.setItem('user',JSON.stringify(payload.user));
+            state.status = payload.status || false;
+            state.user = {...state.user,...payload.user}
         }
     }
 }

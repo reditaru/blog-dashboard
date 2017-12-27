@@ -1,11 +1,19 @@
 /**
  * Created by reditaru on 2017/12/26.
  */
-import request from '../util/request'
+import {request} from '../util/request'
 export async function login({username,password}) {
-    return new Promise((resolve,reject)=>{setTimeout(()=>{resolve ({success:false,code:100,res:{user:{name:'haha',username:'steinskurisu',avatat:'hahaha',id:1}},msg:'The Request User does not exist!'})},1000)})
+    return request('/api/login',{
+        method:'POST',
+        body:JSON.stringify({
+            username,password
+        })});
 
 }
-export async function logout({}) {
-
+export async function logout({id}) {
+    return request('/api/logout',{
+        method:'POST',
+        body:JSON.stringify({
+            id
+        })});
 }

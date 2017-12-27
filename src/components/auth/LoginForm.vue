@@ -8,7 +8,7 @@
                 <el-input type="password" v-model="login.password"></el-input>
             </el-form-item>
             <el-form-item>
-                <el-button type="success" @click="onSubmit('login')" :loading="loading">登录</el-button>
+                <el-button type="success" @click="onSubmit('login')" :loading="loading" >登录</el-button>
             </el-form-item>
         </el-form>
     </el-card>
@@ -25,7 +25,7 @@
                 },
                 rules:{
                     username:[{required:true,message:'请输入用户名',trigger:'blur'},{min:6,max:15,message:'长度在6到15个字符',trigger:'blur'}],
-                    password:[{required:true,message:'请输入密码',trigger:'blur'},{min:6,max:15,message:'长度在6到15个字符',trigger:'blur'}]
+                    password:[{required:true,message:'请输入密码',trigger:'blur'},{min:5,max:15,message:'长度在5到15个字符',trigger:'blur'}]
                 }
             }
         },

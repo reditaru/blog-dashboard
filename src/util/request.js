@@ -6,8 +6,8 @@
  */
 import config from '../config'
 import fetch from 'isomorphic-fetch'
+import auth from './auth'
 const host = config.host;
-const prefix = config.prefix;
 function parse(response) {
     let promise = null;
 
@@ -55,10 +55,12 @@ export function request(url, options) {
     if (options.headers == null) {
         options.headers = {};
     }
-
+    let token = auth.getAuth();
+    if(token!=null)
+        options.headers['Authorization'] = token;
     options.headers['Content-Type'] = 'application/json';
 
-    return fetch(host+prefix+ url, options)
+    return fetch(host+ url, options)
         .then(checkStatus)
         .then(parse)
         .then((data) => {
