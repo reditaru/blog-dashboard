@@ -28,6 +28,7 @@
   "dependencies": {
     "element-ui": "^2.0.9",
     "isomorphic-fetch": "^2.2.1",
+    "path-to-regexp": "^2.1.0",
     "vue": "^2.5.13",
     "vue-router": "^3.0.1",
     "vuex": "^3.0.1"

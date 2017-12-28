@@ -13,36 +13,30 @@
             </el-dropdown>
         </el-header>
         <el-container>
-            <el-aside>
-                    <el-menu
-                            default-active="1"
+                    <el-menu :router="true"
+                            :default-active="$route.path"
                             background-color="#545c64"
                             text-color="#fff"
                             active-text-color="#ffd04b">
-                        <el-menu-item index="1">
-                            <template slot="title">
-                                <i class="el-icon-document"></i>
-                                <span>文章</span>
-                            </template>
+                        <el-menu-item index="/articles">
+                            <i class="el-icon-document"></i>
+                            <span slot="title">文章</span>
                         </el-menu-item>
-                        <el-menu-item index="2">
-                            <i class="el-icon-news"></i>
-                            <span slot="title">标签</span>
-                        </el-menu-item>
-                        <el-menu-item index="3">
+                        <el-menu-item index="/categories">
                             <i class="el-icon-menu"></i>
                             <span slot="title">目录</span>
                         </el-menu-item>
-                        <el-menu-item index="4">
+                        <el-menu-item index="/tags">
+                            <i class="el-icon-news"></i>
+                            <span slot="title">标签</span>
+                        </el-menu-item>
+                        <el-menu-item index="/config">
                             <i class="el-icon-setting"></i>
                             <span slot="title">设置</span>
                         </el-menu-item>
                     </el-menu>
-            </el-aside>
             <el-main>
-                <transition name="slide">
                     <router-view></router-view>
-                </transition>
             </el-main>
         </el-container>
     </el-container>
@@ -52,6 +46,11 @@
     import {TYPES} from '../models/types'
     export default{
         name:'Root',
+        data(){
+            return{
+                activeLink:null
+            }
+        },
         computed:{
             ...mapState({
                 user:state=>state.user.user
@@ -62,7 +61,6 @@
         },
         methods:{
             handleCommand(command){
-                console.log(this.user)
                 switch (command){
                     case'logout':
                         this.$store.dispatch(TYPES.auth.actions.logout,{id:this.user.id},{root:true})
@@ -75,8 +73,16 @@
 <style lang="less" rel="stylesheet/less">
     .main-container{
         .el-container{
-            .el-aside{
-                background-color: #545c64;
+                .el-menu{
+                    padding-top: 20px;
+                    border: 0;
+                }
+            .el-main{
+                .collapse-icon{
+
+                    font-size: 18px;
+                    cursor: pointer;
+                }
             }
         }
     }

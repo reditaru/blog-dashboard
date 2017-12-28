@@ -10,9 +10,7 @@ export async function getArticles() {
 export async function createArticle(payload) {
     return request('/api/articles',{
         method:'POST',
-        body:JSON.stringify({
-
-        })
+        body:JSON.stringify(payload.article)
     })
 }
 export async function getArticle(payload) {
@@ -23,9 +21,7 @@ export async function getArticle(payload) {
 export async function updateArticle(payload) {
     return request(`/api/article/${payload.id}`,{
         method:'PUT',
-        body:JSON.stringify({
-
-        })
+        body:JSON.stringify(payload.article)
     })
 }
 export async function deleteArticle(payload) {

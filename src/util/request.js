@@ -37,7 +37,6 @@ function checkStatus(response) {
 }
 function handleError(response) {
     let promise = parse(response);
-
     if (promise == null) {
         return { status: response.status, success: false };
     }
@@ -59,7 +58,6 @@ export function request(url, options) {
     if(token!=null)
         options.headers['Authorization'] = token;
     options.headers['Content-Type'] = 'application/json';
-
     return fetch(host+ url, options)
         .then(checkStatus)
         .then(parse)
