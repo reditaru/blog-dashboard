@@ -5,11 +5,11 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import config from './config'
 import Root from './views/Root.vue'
-import Login from './views/Login.vue'
-import Articles from './views/article/Articles.vue'
-import Tags from './views/tag/Tags.vue'
-import Categories from './views/category/Categories.vue'
-import Config from './views/config/Config.vue'
+const Login = ()=> import('./views/Login.vue')
+const Articles = ()=>import('./views/article/Articles.vue')
+const Tags = ()=>import('./views/tag/Tags.vue')
+const Categories = ()=>import('./views/category/Categories.vue')
+const Config= ()=>import('./views/config/Config.vue')
 import store from './models'
 import {TYPES} from './models/types'
 Vue.use(VueRouter)
@@ -61,7 +61,8 @@ const routes = [
 ]
 const router = new VueRouter({
     routes,
-    mode: config.routerMode
+    mode: config.routerMode,
+    router:config.base
 })
 const requestIfNotInitial = (arr)=>{
     arr.forEach(item=>{

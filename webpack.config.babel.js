@@ -2,7 +2,9 @@
  * Created by reditaru on 2017/12/25.
  */
 import path from 'path'
+import webpack from 'webpack'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
+import ExtractTextPlugin from 'extract-text-webpack-plugin'
 const ROOT_DIR = path.resolve(__dirname)
 const SRC_DIR = path.join(ROOT_DIR,'src')
 const OUTPUT_DIR = path.join(ROOT_DIR,'dist')
@@ -10,7 +12,8 @@ const NODE_ENV = process.env.NODE_ENV||'development';
 const __DEV__ = NODE_ENV === 'development';
 export default {
     entry:{
-        index:path.join(SRC_DIR,'app.js')
+        index:path.join(SRC_DIR,'app.js'),
+        vendor:['vue','vue-router','vuex']
     },
     output:{
         path:OUTPUT_DIR,
@@ -35,11 +38,17 @@ export default {
             },
             {
                 test:/\.(less)$/,
-                loader:'style-loader!css-loader!less-loader'
+                use:ExtractTextPlugin.extract({
+                    fallback: "style-loader",
+                    use: "css-loader!less-loader"
+                })
             },
             {
                 test:/\.(css)$/,
-                loader:'style-loader!css-loader'
+                use:ExtractTextPlugin.extract({
+                    fallback: "style-loader",
+                    use: "css-loader"
+                })
             },
             {
                 test: /\.(jpe|gif|png|ttf|eot|svg|jpg)$/,
@@ -52,10 +61,24 @@ export default {
         ]
     },
     plugins:[
+        new ExtractTextPlugin({
+            filename:'css/index.css'
+        }),
+        new webpack.optimize.CommonsChunkPlugin({
+            name: ["vendor", "manifest",],
+            minChunks: Infinity,
+        }),
+        new webpack.optimize.UglifyJsPlugin({
+            compress: {
+                warnings: false
+            },
+            sourceMap: true
+        }),
         new HtmlWebpackPlugin({
             filename:'index.html',
-            template:'./index.html'
-        })
+            template:'./index.html',
+            chunks: ['manifest','vendor', 'index']
+        }),
     ],
     devtool:__DEV__? "cheap-module-eval-source-map":false,
     devServer: {

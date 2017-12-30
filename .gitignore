@@ -60,3 +60,5 @@ typings/
 # idea config
 .idea/
 
+# build directory
+dist/

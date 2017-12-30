@@ -4,6 +4,7 @@
 const config = {
     env:'development',
     host:'http://localhost:3000',
-    routerMode:'history'
+    routerMode:'history',
+    base:'/'
 }
 export default config
