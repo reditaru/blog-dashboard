@@ -62,7 +62,7 @@ const routes = [
 const router = new VueRouter({
     routes,
     mode: config.routerMode,
-    router:config.base
+    base:config.base
 })
 const requestIfNotInitial = (arr)=>{
     arr.forEach(item=>{

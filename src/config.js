@@ -3,8 +3,8 @@
  */
 const config = {
     env:'development',
-    host:'http://localhost:3000',
+    host:'https://reditaru.com',
     routerMode:'history',
-    base:'/'
+    base:'/admin/'
 }
 export default config

@@ -18,7 +18,7 @@ export default {
     output:{
         path:OUTPUT_DIR,
         filename:__DEV__? 'js/[name].js':'js/[name].[hash:8].js',
-        publicPath:'/'
+        publicPath:'/admin/'
     },
     resolve: {
         alias: {
@@ -85,6 +85,7 @@ export default {
         contentBase: '/dist',
         historyApiFallback: true,
         inline: true,
-        hot:true
+        hot:true,
+        publicPath:'/admin/'
     }
 }
