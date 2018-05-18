@@ -5,6 +5,7 @@ import path from 'path'
 import webpack from 'webpack'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
+import {BundleAnalyzerPlugin} from 'webpack-bundle-analyzer'
 const ROOT_DIR = path.resolve(__dirname)
 const SRC_DIR = path.join(ROOT_DIR,'src')
 const OUTPUT_DIR = path.join(ROOT_DIR,'dist')
@@ -79,6 +80,7 @@ export default {
             template:'./index.html',
             chunks: ['manifest','vendor', 'index']
         }),
+		new BundleAnalyzerPlugin()
     ],
     devtool:__DEV__? "cheap-module-eval-source-map":false,
     devServer: {
