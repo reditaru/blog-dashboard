@@ -36,48 +36,53 @@
     </el-form>
 </template>
 <script>
-    export default{
-        name:'ArticleForm',
-        props:['loading','categories','tags','article','operation'],
-        data(){
-            return{
-                rules:{
-                    title:[{required:true,message:'请输入标题',trigger:'blur'}],
-                    summary:[{required:true,message:'请输入摘要',trigger:'blur'}],
-                    content:[{required:true,message:'请输入文章内容',trigger:'blur'}],
-                    category:[{required:true,message:'请选择目录',trigger:'blur'},{type:'number',message:'请选择目录'}],
-                    tags:[{required:true,message:'请选择标签',trigger:'blur'},{type:'array',message:'请选择标签'}],
-                }
-            }
-        },
-        computed:{
-
-        },
-        methods:{
-            onSubmit(formName){
-                this.$refs[formName].validate((valid) => {
-                    if (valid) {
-                        this.$emit('onSubmit',this.article);
-                    } else {
-                        this.$message.error('请合法填写相应字段')
-                        return false;
-                    }
-                });
-            },
-            cancel(){
-                this.$emit('hideDialog');
-            }
-        }
-    }
+export default {
+	name: 'ArticleForm',
+	props: ['loading', 'categories', 'tags', 'article', 'operation'],
+	data() {
+		return {
+			rules: {
+				title: [{ required: true, message: '请输入标题', trigger: 'blur' }],
+				summary: [{ required: true, message: '请输入摘要', trigger: 'blur' }],
+				content: [{ required: true, message: '请输入文章内容', trigger: 'blur' }],
+				category: [
+					{ required: true, message: '请选择目录', trigger: 'blur' },
+					{ type: 'number', message: '请选择目录' },
+				],
+				tags: [
+					{ required: true, message: '请选择标签', trigger: 'blur' },
+					{ type: 'array', message: '请选择标签' },
+				],
+			},
+		};
+	},
+	computed: {},
+	methods: {
+		onSubmit(formName) {
+			this.$refs[formName].validate(valid => {
+				if (valid) {
+					this.$emit('onSubmit', this.article);
+				} else {
+					this.$message.error('请合法填写相应字段');
+					return false;
+				}
+			});
+		},
+		cancel() {
+			this.$emit('hideDialog');
+		},
+	},
+};
 </script>
 
 <style lang="less" rel="stylesheet/less">
-    .el-form{
-        .category,.tags{
-            width: 100%;
-        }
-        .footer{
-            text-align: right;
-        }
-    }
+.el-form {
+	.category,
+	.tags {
+		width: 100%;
+	}
+	.footer {
+		text-align: right;
+	}
+}
 </style>

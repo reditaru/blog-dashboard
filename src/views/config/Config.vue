@@ -29,38 +29,43 @@
 </template>
 
 <script>
-    import {mapState} from 'vuex'
-    import ConfigForm from '../../components/config/ConfigForm.vue'
-    import {TYPES} from '../../models/types'
-    export default{
-        name:'Config',
-        data(){
-            return {
-                dialogVisible:false,
-                columns:[{prop:'key',label:'键'},{prop:'value',label:'值'}]
-            }
-        },
-        computed:{
-            ...mapState({
-                rawData:state=>state.config.config,
-                loading:state=>state.config.loading,
-                status:state=>state.config.status,
-                msg:state=>state.config.msg,
-            }),
-            config(){return Object.keys(this.rawData).filter(k=>k!=='id').map(k => {return {key:k,value:this.rawData[k]}})},
-        },
-        methods:{
-            handle(data){
-                delete data['id'];
-                this.$store.dispatch(TYPES.config.actions.UPDATE_CONFIG,{config:data},{root:true}).then(()=> {
-                    this.dialogVisible = false;
-                    if(!this.status)
-                        this.$message.error(this.msg)
-                });
-            }
-        },
-        components:{
-            ConfigForm
-        }
-    }
+import { mapState } from 'vuex';
+import ConfigForm from '../../components/config/ConfigForm.vue';
+import { TYPES } from '../../models/types';
+export default {
+	name: 'Config',
+	data() {
+		return {
+			dialogVisible: false,
+			columns: [{ prop: 'key', label: '键' }, { prop: 'value', label: '值' }],
+		};
+	},
+	computed: {
+		...mapState({
+			rawData: state => state.config.config,
+			loading: state => state.config.loading,
+			status: state => state.config.status,
+			msg: state => state.config.msg
+		}),
+		config() {
+			return Object.keys(this.rawData)
+				.filter(k => k !== 'id')
+				.map(k => {
+					return { key: k, value: this.rawData[k] };
+				});
+		},
+	},
+	methods: {
+		handle(data) {
+			delete data['id'];
+			this.$store.dispatch(TYPES.config.actions.UPDATE_CONFIG, { config: data }, { root: true }).then(() => {
+				this.dialogVisible = false;
+				if (!this.status) this.$message.error(this.msg);
+			});
+		},
+	},
+	components: {
+		ConfigForm,
+	}
+};
 </script>

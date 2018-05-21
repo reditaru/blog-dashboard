@@ -14,39 +14,44 @@
     </el-card>
 </template>
 <script>
-    export default{
-        name:'LoginForm',
-        props:['loading'],
-        data(){
-            return{
-                login:{
-                    username:'',
-                    password:''
-
-                },
-                rules:{
-                    username:[{required:true,message:'请输入用户名',trigger:'blur'},{min:6,max:15,message:'长度在6到15个字符',trigger:'blur'}],
-                    password:[{required:true,message:'请输入密码',trigger:'blur'},{min:5,max:15,message:'长度在5到15个字符',trigger:'blur'}]
-                }
-            }
-        },
-        methods:{
-            onSubmit(formName){
-                this.$refs[formName].validate((valid) => {
-                    if (valid) {
-                        this.$emit('onSubmit',this.login);
-                    } else {
-                        this.$message.error('请合法填写相应字段')
-                        return false;
-                    }
-                });
-            }
-        }
-    }
+export default {
+	name: 'LoginForm',
+	props: ['loading'],
+	data() {
+		return {
+			login: {
+				username: '',
+				password: '',
+			},
+			rules: {
+				username: [
+					{ required: true, message: '请输入用户名', trigger: 'blur' },
+					{ min: 6, max: 15, message: '长度在6到15个字符', trigger: 'blur' },
+				],
+				password: [
+					{ required: true, message: '请输入密码', trigger: 'blur' },
+					{ min: 5, max: 15, message: '长度在5到15个字符', trigger: 'blur' },
+				],
+			},
+		};
+	},
+	methods: {
+		onSubmit(formName) {
+			this.$refs[formName].validate(valid => {
+				if (valid) {
+					this.$emit('onSubmit', this.login);
+				} else {
+					this.$message.error('请合法填写相应字段');
+					return false;
+				}
+			});
+		},
+	},
+};
 </script>
 
 <style lang="less" scoped>
-    .el-button{
-        width: 100%;
-    }
+.el-button {
+	width: 100%;
+}
 </style>

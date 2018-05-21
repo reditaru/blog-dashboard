@@ -12,46 +12,47 @@
 </template>
 
 <script>
-    import LoginForm from '../components/auth/LoginForm.vue'
-    import {TYPES} from '../models/types'
-    import {mapState} from 'vuex'
-    import router from '../router'
-    export default{
-        name:'Login',
-        data(){
-            return{
-            }
-        },
-        mounted(){
-            if(this.isLogin){
-                setTimeout(()=>{router.push('/')},2000)
-            }
-        },
-        computed:{
-            ...mapState({
-                loading:state=>state.auth.loading,
-                status:state=>state.auth.status,
-                msg:state=>state.auth.msg,
-                isLogin:state=>state.user.status
-            })
-        },
-        components: {
-            LoginForm
-        },
-        methods:{
-            submit({username,password}){
-                this.$store.dispatch(TYPES.auth.actions.login,{username,password},{root:true})
-            }
-        }
-    }
+import LoginForm from '../components/auth/LoginForm.vue';
+import { TYPES } from '../models/types';
+import { mapState } from 'vuex';
+import router from '../router';
+export default {
+	name: 'Login',
+	data() {
+		return {};
+	},
+	mounted() {
+		if (this.isLogin) {
+			setTimeout(() => {
+				router.push('/');
+			}, 2000);
+		}
+	},
+	computed: {
+		...mapState({
+			loading: state => state.auth.loading,
+			status: state => state.auth.status,
+			msg: state => state.auth.msg,
+			isLogin: state => state.user.status,
+		}),
+	},
+	components: {
+		LoginForm,
+	},
+	methods: {
+		submit({ username, password }) {
+			this.$store.dispatch(TYPES.auth.actions.login, { username, password }, { root: true });
+		},
+	},
+};
 </script>
 <style lang="less"  rel="stylesheet/less">
-    .login{
-        text-align: center;
-        margin:120px auto;
-        width:312px;
-        .el-alert{
-            margin-bottom: 5px;
-        }
-    }
+.login {
+	text-align: center;
+	margin: 120px auto;
+	width: 312px;
+	.el-alert {
+		margin-bottom: 5px;
+	}
+}
 </style>

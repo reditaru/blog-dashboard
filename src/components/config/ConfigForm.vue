@@ -31,51 +31,50 @@
     </el-form>
 </template>
 <script>
-    export default{
-        name:'ConfigForm',
-        props:['loading','config'],
-        data(){
-            return{
-                rules:{
-                    icon:[{required:true,message:'请输入图标',trigger:'blur'}],
-                    header:[{required:true,message:'请输入Name',trigger:'blur'}],
-                    subHeader:[{required:true,message:'请输入Intro',trigger:'blur'}],
-                    avatar:[{required:true,message:'请输入头像',trigger:'blur'}],
-                    github:[{required:true,message:'请输入github',trigger:'blur'}],
-                    weibo:[{required:true,message:'请输入微博',trigger:'blur'}],
-                    twitter:[{required:true,message:'请输入twitter',trigger:'blur'}],
-                    mail:[{required:true,message:'请输入邮箱',trigger:'blur'}],
-                }
-            }
-        },
-        computed:{
-
-        },
-        methods:{
-            onSubmit(formName){
-                this.$refs[formName].validate((valid) => {
-                    if (valid) {
-                        this.$emit('onSubmit',this.config);
-                    } else {
-                        this.$message.error('请合法填写相应字段')
-                        return false;
-                    }
-                });
-            },
-            cancel(){
-                this.$emit('hideDialog');
-            }
-        }
-    }
+export default {
+	name: 'ConfigForm',
+	props: ['loading', 'config'],
+	data() {
+		return {
+			rules: {
+				icon: [{ required: true, message: '请输入图标', trigger: 'blur' }],
+				header: [{ required: true, message: '请输入Name', trigger: 'blur' }],
+				subHeader: [{ required: true, message: '请输入Intro', trigger: 'blur' }],
+				avatar: [{ required: true, message: '请输入头像', trigger: 'blur' }],
+				github: [{ required: true, message: '请输入github', trigger: 'blur' }],
+				weibo: [{ required: true, message: '请输入微博', trigger: 'blur' }],
+				twitter: [{ required: true, message: '请输入twitter', trigger: 'blur' }],
+				mail: [{ required: true, message: '请输入邮箱', trigger: 'blur' }],
+			},
+		};
+	},
+	computed: {},
+	methods: {
+		onSubmit(formName) {
+			this.$refs[formName].validate(valid => {
+				if (valid) {
+					this.$emit('onSubmit', this.config);
+				} else {
+					this.$message.error('请合法填写相应字段');
+					return false;
+				}
+			});
+		},
+		cancel() {
+			this.$emit('hideDialog');
+		},
+	},
+};
 </script>
 
 <style lang="less" rel="stylesheet/less">
-    .el-form{
-        .category,.tags{
-            width: 100%;
-        }
-        .footer{
-            text-align: right;
-        }
-    }
+.el-form {
+	.category,
+	.tags {
+		width: 100%;
+	}
+	.footer {
+		text-align: right;
+	}
+}
 </style>

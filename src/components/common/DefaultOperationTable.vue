@@ -22,38 +22,41 @@
     </el-table>
 </template>
 <script>
-    export default{
-        name:'Table',
-        props:['columns','data'],
-        methods:{
-            handleEdit(row){
-                this.$emit('edit',row);
-            },
-            handleDelete(row){
-                this.$emit('delete',row);
-            },
-            cellClass({row, column, rowIndex, columnIndex}){
-                if(this.columns[columnIndex]&&this.columns[columnIndex].type&&
-                    column.property===this.columns[columnIndex].prop){
-                    switch (this.columns[columnIndex].type){
-                        case 'label':
-                            return 'tag'
-                    }
-                }
-            }
-        }
-    }
+export default {
+	name: 'Table',
+	props: ['columns', 'data'],
+	methods: {
+		handleEdit(row) {
+			this.$emit('edit', row);
+		},
+		handleDelete(row) {
+			this.$emit('delete', row);
+		},
+		cellClass({ row, column, rowIndex, columnIndex }) {
+			if (
+				this.columns[columnIndex] &&
+				this.columns[columnIndex].type &&
+				column.property === this.columns[columnIndex].prop
+			) {
+				switch (this.columns[columnIndex].type) {
+					case 'label':
+						return 'tag';
+				}
+			}
+		},
+	},
+};
 </script>
 
 <style lang="less" rel="stylesheet/less">
-    .tag{
-        .cell{
-            display: inline;
-            border: 1px solid rgba(64,158,255,.2);
-            background-color: rgba(64,158,255,.1);
-            padding: 0 10px;
-            border-radius: 4px;
-            color: #409EFF;
-        }
-    }
+.tag {
+	.cell {
+		display: inline;
+		border: 1px solid rgba(64, 158, 255, 0.2);
+		background-color: rgba(64, 158, 255, 0.1);
+		padding: 0 10px;
+		border-radius: 4px;
+		color: #409eff;
+	}
+}
 </style>

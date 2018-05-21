@@ -10,5 +10,14 @@ import category from './category'
 import tag from './tag'
 import config from './config'
 Vue.use(Vuex)
-const store = new Vuex.Store({modules:{article,auth,user,category,tag,config}})
+const store = new Vuex.Store({
+    modules: {
+        article,
+        auth,
+        user,
+        category,
+        tag,
+        config
+    }
+})
 export default store

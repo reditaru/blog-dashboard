@@ -2,13 +2,13 @@
  * Created by reditaru on 2017/12/27.
  */
 export default {
-    getAuth(){
+    getAuth() {
         return sessionStorage.getItem('token');
     },
-    setAuth(token,type='Bearer'){
-        sessionStorage.setItem('token',`${type} ${token}`);
+    setAuth(token, type = 'Bearer') {
+        sessionStorage.setItem('token', `${type} ${token}`);
     },
-    clearAuth(){
+    clearAuth() {
         sessionStorage.clear()
     }
 }

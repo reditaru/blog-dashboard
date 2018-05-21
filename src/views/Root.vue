@@ -42,65 +42,65 @@
     </el-container>
 </template>
 <script>
-    import {mapState} from 'vuex'
-    import {TYPES} from '../models/types'
-    export default{
-        name:'Root',
-        data(){
-            return{
-                activeLink:null
-            }
-        },
-        computed:{
-            ...mapState({
-                user:state=>state.user.user
-            }),
-            mail(){
-                return `mailto:${this.user.email}`;
-            }
-        },
-        methods:{
-            handleCommand(command){
-                switch (command){
-                    case'logout':
-                        this.$store.dispatch(TYPES.auth.actions.logout,{id:this.user.id},{root:true})
-                        break;
-                }
-            }
-        }
-    }
+import { mapState } from 'vuex';
+import { TYPES } from '../models/types';
+export default {
+	name: 'Root',
+	data() {
+		return {
+			activeLink: null,
+		};
+	},
+	computed: {
+		...mapState({
+			user: state => state.user.user,
+		}),
+		mail() {
+			return `mailto:${this.user.email}`;
+		},
+	},
+	methods: {
+		handleCommand(command) {
+			switch (command) {
+				case 'logout':
+					this.$store.dispatch(TYPES.auth.actions.logout, { id: this.user.id }, { root: true });
+					break;
+			}
+		},
+	},
+};
 </script>
 <style lang="less" rel="stylesheet/less">
-    .main-container{
-        .el-container{
-                .el-menu{
-                    padding-top: 20px;
-                    border: 0;
-                }
-            .el-main{
-                .collapse-icon{
-
-                    font-size: 18px;
-                    cursor: pointer;
-                }
-            }
-        }
-    }
-    .main-header {
-        background-color: #B3C0D1;
-        color: #333;
-        line-height: 60px;
-        text-align: right;
-        .el-dropdown-link {
-            cursor: pointer;
-            i{
-                color: #409EFF;
-            }
-        }
-        .avatar{
-            height: 24px;
-            width:  24px;
-            border-radius: 50%;
-        }
-    }
+.main-container {
+	.el-container {
+		.el-menu {
+			padding-top: 20px;
+			border: 0;
+		}
+		.el-main {
+			overflow-y:hidden;
+			.collapse-icon {
+				font-size: 18px;
+				cursor: pointer;
+			}
+		}
+	}
+}
+.main-header {
+	background-color: #b3c0d1;
+	color: #333;
+	line-height: 60px;
+	text-align: right;
+	.el-dropdown-link {
+		cursor: pointer;
+		i {
+			color: #409eff;
+		}
+	}
+	.avatar {
+		height: 24px;
+		width: 24px;
+		border-radius: 50%;
+	}
+}
 </style>
